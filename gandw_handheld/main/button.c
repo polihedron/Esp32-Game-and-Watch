@@ -2,6 +2,7 @@
 #include "esp_timer.h"
 #include <gw_system.h>
 #include "button.h"
+#include "brightness.h"
 #include "volume.h"
 #include "audio.h"
 #include "menu.h"
@@ -175,13 +176,25 @@ uint8_t button_get_menu_buttons(void)
 	
 		if (gpio_get_level(BUTTON_TIME) == 0) { 
 
-			if (right_group_pressed()) { 
+			if (gpio_get_level(BUTTON_RIGHT) == 0 ) { 
+				brightness_set(true); // brightness up
+				volume_menu_tone(audio_handle);
+				menu_update = true;
+				button_start_delay = 7;
+			}
+			else if (gpio_get_level(BUTTON_LEFT) == 0 ) {
+				brightness_set(false); // brightness down
+				volume_menu_tone(audio_handle);
+				menu_update = true;
+				button_start_delay = 7;
+			}			
+			else if (gpio_get_level(BUTTON_RIGHT_2) == 0 ) { 
 				volume_set(true); // volume up
 				volume_menu_tone(audio_handle);
 				menu_update = true;
 				button_start_delay = 7;
 			}
-			else if (left_group_pressed()) {
+			else if (gpio_get_level(BUTTON_LEFT_2) == 0 ) {
 				volume_set(false); // volume down
 				volume_menu_tone(audio_handle);
 				menu_update = true;
@@ -314,9 +327,15 @@ uint8_t button_get_menu_buttons(void)
 			if (gpio_get_level(BUTTON_TIME) == 0) {
 				
 				if (gpio_get_level(BUTTON_RIGHT) == 0) { 
-					volume_set(true); // volume up
+					brightness_set(true); // volume up
 				}
 				else if (gpio_get_level(BUTTON_LEFT) == 0) {
+					brightness_set(false); // volume down
+				}
+				if (gpio_get_level(BUTTON_RIGHT_2) == 0) { 
+					volume_set(true); // volume up
+				}
+				else if (gpio_get_level(BUTTON_LEFT_2) == 0) {
 					volume_set(false); // volume down
 				}
 				else {
@@ -409,9 +428,15 @@ uint8_t button_get_menu_buttons(void)
 			if (gpio_get_level(BUTTON_TIME) == 0) {
 				
 				if (gpio_get_level(BUTTON_RIGHT) == 0) { 
-					volume_set(true); // volume up
+					brightness_set(true); // volume up
 				}
 				else if (gpio_get_level(BUTTON_LEFT) == 0) {
+					brightness_set(false); // volume down
+				}
+				if (gpio_get_level(BUTTON_RIGHT_2) == 0) { 
+					volume_set(true); // volume up
+				}
+				else if (gpio_get_level(BUTTON_LEFT_2) == 0) {
 					volume_set(false); // volume down
 				}
 				else {

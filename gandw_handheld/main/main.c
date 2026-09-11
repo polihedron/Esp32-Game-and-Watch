@@ -5,12 +5,16 @@
 #include "menu.h"
 #include "game.h"
 #include "battery.h"
+#include "brightness.h"
 #include "volume.h"
 #include "display.h"
 #include "audio.h"
 
-static void display_volume_battery(unsigned short *framebuffer)
+static void display_brightness_volume_battery(unsigned short *framebuffer)
 {
+	if (brightness_display_count > 0) {
+		brightness_display(framebuffer);
+	}
 	if (volume_display_count > 0) {
 		volume_display(framebuffer);
 	}
@@ -34,6 +38,12 @@ static void state_menu(unsigned short *framebuffer) {
 		
 		menu_buttons_process();
 		
+		if (brightness_display_count > 0) {
+			brightness_display_count--;
+			if (brightness_display_count == 0) {
+				menu_update = true;
+			}
+		}
 		if (volume_display_count > 0) {
 			volume_display_count--;
 			if (volume_display_count == 0) {
@@ -56,8 +66,8 @@ static void state_menu(unsigned short *framebuffer) {
 			
 			menu_display_item(framebuffer, menu_index);
 			
-			if (volume_display_count > 0 || battery_display_count > 0) {
-				display_volume_battery(framebuffer);
+			if (brightness_display_count > 0 || volume_display_count > 0 || battery_display_count > 0) {
+				display_brightness_volume_battery(framebuffer);
 			}
 
 			display_render_screen(framebuffer);
@@ -87,7 +97,11 @@ static void state_game(unsigned short *framebuffer, uint16_t *audio_buffer) {
 	gw_system_reset();
 	
 	while (!menu_show) {
-
+		
+		if (brightness_display_count > 0) {
+			brightness_display_count--;
+		}
+		
 		if (volume_display_count > 0) {
 			volume_display_count--;
 		}
@@ -110,8 +124,8 @@ static void state_game(unsigned short *framebuffer, uint16_t *audio_buffer) {
 
 			gw_system_blit(framebuffer);
 
-			if (volume_display_count > 0 || battery_display_count > 0) {
-				display_volume_battery(framebuffer);
+			if (brightness_display_count > 0 || volume_display_count > 0 || battery_display_count > 0) {
+				display_brightness_volume_battery(framebuffer);
 			}
 
 			display_render_screen(framebuffer);
@@ -147,11 +161,10 @@ void app_main(void)
 	display_init();
 	button_init();
 	nvs_init();
-	
 	display_blank_screen(framebuffer);
-
+	brightness_init();
 	volume_read();
-
+	brightness_read();
 	battery_get_level();
 	
 	state_menu(framebuffer);
