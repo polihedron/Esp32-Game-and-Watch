@@ -8,6 +8,9 @@
 #include "audio.h"
 #include "menu.h"
 
+volatile bool rewind_requested = false;
+volatile bool game_paused = false;
+
 // buttons
 #define BUTTON_GAME_A		GPIO_NUM_14
 #define BUTTON_GAME_B		GPIO_NUM_5
@@ -228,6 +231,40 @@ uint8_t button_get_menu_buttons(void)
 
 #if defined(MODEL_SINGLE_SCREEN_4_BUTTON)
 
+	static int64_t rewind_timer = 0;
+	static bool rewind_wait_release = false;
+	/* Continue: hold Time + Up for 2 s to rewind ~10-15 s */
+	static bool process_rewind_buttons(void) {
+		if (gpio_get_level(BUTTON_TIME) == 0 && gpio_get_level(BUTTON_LEFT_2) == 0) {
+			if (rewind_wait_release) return true;
+			if (rewind_timer == 0) rewind_timer = esp_timer_get_time();
+			else if (esp_timer_get_time() - rewind_timer > 2000000) { rewind_requested = true; rewind_wait_release = true; }
+			return true;
+		}
+		rewind_timer = 0;
+		rewind_wait_release = false;
+		return false;
+	}
+
+	/* Pause: a quick tap of Time (no other button) toggles pause.
+	   Called from the main loop, outside the emulator, so it still
+	   works while the game is frozen. */
+	void button_process_pause(void) {
+		static bool time_down = false;
+		static bool time_combo = false;
+		static int64_t time_press = 0;
+		if (gpio_get_level(BUTTON_TIME) == 0) {
+			if (time_down == false) { time_down = true; time_combo = false; time_press = esp_timer_get_time(); }
+			if (gpio_get_level(BUTTON_LEFT) == 0 || gpio_get_level(BUTTON_RIGHT) == 0 || gpio_get_level(BUTTON_LEFT_2) == 0 || gpio_get_level(BUTTON_RIGHT_2) == 0) time_combo = true;
+		}
+		else if (time_down) {
+			time_down = false;
+			if (time_combo == false && esp_timer_get_time() - time_press < 1000000) game_paused = (game_paused == false);
+		}
+		if (game_paused) process_reset_buttons();
+	}
+
+
 	static unsigned int button_get_four_default_buttons(void) 
 	{
 		
@@ -367,7 +404,9 @@ uint8_t button_get_menu_buttons(void)
 			if (process_reset_buttons()) {
 				return 0;
 			}
-
+			if (process_rewind_buttons()) {
+				return 0;
+			}
 			if (gpio_get_level(BUTTON_TIME) == 0) {
 				
 				if (gpio_get_level(BUTTON_RIGHT) == 0) { 
