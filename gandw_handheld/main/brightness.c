@@ -59,9 +59,9 @@ void brightness_apply(void)
     uint32_t duty;
 
     if (brightness_level == 0) {
-        duty = 0;
+        duty = 1023;
     } else {
-        duty = ((uint32_t)brightness_level * 1023) / 10;
+        duty = 1023 - ((uint32_t)brightness_level * 1023) / BRIGHTNESS_LEVEL_MAX;
     }
 
     ESP_ERROR_CHECK(

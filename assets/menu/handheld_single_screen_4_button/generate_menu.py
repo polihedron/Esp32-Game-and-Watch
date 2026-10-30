@@ -22,7 +22,30 @@ input_files = [
 	"marios_cement_factory.png",
 	"manhole.png",
 	"tropical_fish.png",
-	"mario_the_juggler.png"
+    "mario_the_juggler.png", 
+	"trspacmis.png",
+    "trspider.png",
+	"trthuball.png",
+	"trsrescue.png",
+    "trshutvoy.png",
+	"tigarden.png",
+    "trdivadv.png",
+    "trsgkeep.png",
+	"atakaast.png",     
+    "auslalom.png",
+	"biathlon.png",
+	"ecircus.png",
+    "exospace.png",
+	"fowling.png",
+	"frogling.png",
+    "ehockey.png",
+    "krybolov.png",
+	"vfutbol.png",
+    "morataka.png",
+	"nburglar.png",
+    "nupogodi.png",
+    "spacebridge.png"
+   
 ]	
 
 output_raw = "menu_single_screen_4_button.raw"

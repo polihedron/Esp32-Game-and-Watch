@@ -1,5 +1,6 @@
 #include "driver/gpio.h"
 #include "esp_timer.h"
+#include "esp_system.h"
 #include <gw_system.h>
 #include "button.h"
 #include "brightness.h"
@@ -312,7 +313,50 @@ uint8_t button_get_menu_buttons(void)
 		return hw_buttons;
 			
 	}
+	
+		static unsigned int button_get_four_diver_buttons(void) {
+		
+		uint32_t hw_buttons = 0;
+		
+		if (gpio_get_level(BUTTON_RIGHT) == 0) { 
+			hw_buttons |= GW_BUTTON_DOWN;
+		}
+		else if (gpio_get_level(BUTTON_LEFT) == 0) {
+				hw_buttons |= GW_BUTTON_LEFT;
+		}
+		else if (gpio_get_level(BUTTON_RIGHT_2) == 0) { 
+			hw_buttons |= GW_BUTTON_UP;
+		}
+		else if (gpio_get_level(BUTTON_LEFT_2) == 0) {
+				hw_buttons |= GW_BUTTON_LEFT;
+		}
+		
+		return hw_buttons;
+			
+	}
 
+		static unsigned int button_get_four_keeper_buttons(void) {
+		
+		uint32_t hw_buttons = 0;
+		
+		if (gpio_get_level(BUTTON_RIGHT) == 0) { 
+			hw_buttons |= GW_BUTTON_UP;
+		}
+		else if (gpio_get_level(BUTTON_LEFT) == 0) {
+				hw_buttons |= GW_BUTTON_RIGHT;
+		}
+		else if (gpio_get_level(BUTTON_RIGHT_2) == 0) { 
+			hw_buttons |= GW_BUTTON_DOWN;
+		}
+		else if (gpio_get_level(BUTTON_LEFT_2) == 0) {
+				hw_buttons |= GW_BUTTON_LEFT;
+		}
+		
+		return hw_buttons;
+			
+	}
+	
+	
 	static unsigned int button_get_four_buttons(void)
 	{
 		
@@ -352,7 +396,8 @@ uint8_t button_get_menu_buttons(void)
 			else if (gpio_get_level(BUTTON_ALARM) == 0) {
 				hw_buttons |= GW_BUTTON_B + GW_BUTTON_GAME;
 			}
-			else if (gpio_get_level(BUTTON_ACL) == 0) {
+			else if (gpio_get_level(BUTTON_ACL) == 0) 
+			{
 				gw_system_reset();
 			}
 			else {
@@ -365,6 +410,12 @@ uint8_t button_get_menu_buttons(void)
 				else if (button_control_mode == BUTTON_CONTROL_MODE_FLAGMAN_LION) {
 					hw_buttons = button_get_four_flagman_lion_buttons();
 				}
+				else if (button_control_mode == BUTTON_CONTROL_MODE_DIVER) {
+					hw_buttons = button_get_four_diver_buttons();
+				}	
+				else if (button_control_mode == BUTTON_CONTROL_MODE_KEEPER) {
+					hw_buttons = button_get_four_keeper_buttons();
+				}				
 				else {
 					hw_buttons = button_get_four_default_buttons();
 				}
@@ -454,8 +505,10 @@ uint8_t button_get_menu_buttons(void)
 				hw_buttons |= GW_BUTTON_B + GW_BUTTON_GAME;
 			}
 			else if (gpio_get_level(BUTTON_ACL) == 0) {
-				gw_system_reset();
+				//gw_system_reset();
+				esp_restart();
 			}
+			
 			else {
 				if (button_control_mode == BUTTON_CONTROL_MODE_TROPICAL_FISH) {
 					hw_buttons = button_get_two_tropicalfish_buttons();

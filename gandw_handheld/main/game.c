@@ -43,8 +43,34 @@ Game games[] = {
 	{ .name="Mario's Cement Factory", .year="1983", .img_unit_width=256, .img_unit_height=154, .color_line=10, .text_color=0xffff },
 	{ .name="Manhole", .year="1983", .img_unit_width=256, .img_unit_height=154, .color_line=10, .text_color=0xffff },
 	{ .name="Tropical Fish", .year="1985", .img_unit_width=256, .img_unit_height=154, .color_line=10, .text_color=0xffff },
-	{ .name="Mario the Juggler", .year="1991", .img_unit_width=256, .img_unit_height=155, .color_line=10, .text_color=0x0000 }
+	{ .name="Mario the Juggler", .year="1991", .img_unit_width=256, .img_unit_height=155, .color_line=10, .text_color=0x0000 },
+	{ .name="Space Mission", .year="1982", .img_unit_width=256, .img_unit_height=168, .color_line=10, .text_color=0x0000 },
+	{ .name="Spider", .year="1982", .img_unit_width=256, .img_unit_height=165, .color_line=10, .text_color=0x0000 },
+	{ .name="Thunder Ball", .year="1983", .img_unit_width=256, .img_unit_height=170, .color_line=10, .text_color=0x0000 },
+	{ .name="Space Rescue", .year="1982", .img_unit_width=256, .img_unit_height=169, .color_line=10, .text_color=0x0000 },
+	{ .name="Shuttle Voyage", .year="1983", .img_unit_width=256, .img_unit_height=171, .color_line=10, .text_color=0x0000 },
+	{ .name="Thief in Garden", .year="1983", .img_unit_width=256, .img_unit_height=171, .color_line=10, .text_color=0x0000 },
+	{ .name="Diver's Adventure", .year="1983", .img_unit_width=256, .img_unit_height=171, .color_line=10, .text_color=0x0000 },
+	{ .name="Super Goal Keeper", .year="1983", .img_unit_width=256, .img_unit_height=169, .color_line=10, .text_color=0x0000 },
+	{ .name="Asteroid Attack", .year="1993", .img_unit_width=256, .img_unit_height=154, .color_line=10, .text_color=0x0000 },
+	{ .name="Autoslalom", .year="1989", .img_unit_width=256, .img_unit_height=142, .color_line=10, .text_color=0x0000 },
+	{ .name="Biathlon", .year="1989", .img_unit_width=256, .img_unit_height=157, .color_line=10, .text_color=0x0000 },
+	{ .name="Circus", .year="1993", .img_unit_width=256, .img_unit_height=151, .color_line=10, .text_color=0x0000 },
+	{ .name="Explorers of Space", .year="1989", .img_unit_width=256, .img_unit_height=152, .color_line=10, .text_color=0x0000 },
+	{ .name="Fowling", .year="1989", .img_unit_width=256, .img_unit_height=152, .color_line=10, .text_color=0x0000 },	
+	{ .name="Frogling", .year="1989", .img_unit_width=256, .img_unit_height=155, .color_line=10, .text_color=0x0000 },
+	{ .name="Hockey", .year="1988", .img_unit_width=256, .img_unit_height=153, .color_line=10, .text_color=0x0000 },
+	{ .name="Cat Fisherman", .year="1989", .img_unit_width=256, .img_unit_height=154, .color_line=10, .text_color=0x0000 },
+	{ .name="Monkey Goalkeeper", .year="1989", .img_unit_width=256, .img_unit_height=144, .color_line=10, .text_color=0x0000 },
+	{ .name="Sea Attack", .year="1994", .img_unit_width=256, .img_unit_height=151, .color_line=10, .text_color=0x0000 },
+	{ .name="Night Burglars", .year="1992", .img_unit_width=256, .img_unit_height=155, .color_line=10, .text_color=0x0000 },
+	{ .name="Nu, pogodi!", .year="1983", .img_unit_width=256, .img_unit_height=151, .color_line=10, .text_color=0x0000 },
+	{ .name="Space Bridge", .year="1989", .img_unit_width=256, .img_unit_height=151, .color_line=10, .text_color=0x0000 }
 
+
+
+
+	
 #elif defined(MODEL_MULTI_SCREEN_2_BUTTON)
 
 	{ .name="Oil Panic", .year="1982", .img_unit_width=160, .img_unit_height=200, .img_box_width=270, .img_box_height=154, .color_line=2, .text_color=0x0000, .box_bg_color=0xef9d, .box_border_color=0xa4ac },
@@ -224,13 +250,82 @@ void game_load(int index)
 
 	extern const uint8_t gnwmanhole_wide_gw_start[] asm("_binary_Game___Watch_Manhole__New_Wide_Screen__gw_start");
 	extern const uint8_t gnwmanhole_wide_gw_end[]   asm("_binary_Game___Watch_Manhole__New_Wide_Screen__gw_end");
-
+	
 	extern const uint8_t gnwtropicalfish_gw_start[] asm("_binary_Game___Watch_Tropical_Fish_gw_start");
-	extern const uint8_t gnwtropicalfish_gw_end[]   asm("_binary_Game___Watch_Tropical_Fish_gw_end");
-
+	extern const uint8_t gnwtropicalfish_gw_end[]   asm("_binary_Game___Watch_Tropical_Fish_gw_end");	
+	
 	extern const uint8_t gnwmariojuggler_gw_start[] asm("_binary_Game___Watch_Mario_The_Juggler_gw_start");
 	extern const uint8_t gnwmariojuggler_gw_end[]   asm("_binary_Game___Watch_Mario_The_Juggler_gw_end");
+	
+	extern const uint8_t spacemission_gw_start[] asm("_binary_Space_Mission__Tronica__gw_start");
+	extern const uint8_t spacemission_gw_end[]   asm("_binary_Space_Mission__Tronica__gw_end");	
+	
+	extern const uint8_t spider_gw_start[] asm("_binary_Spider__Tronica__gw_start");
+	extern const uint8_t spider_gw_end[]   asm("_binary_Spider__Tronica__gw_end");	
+	
+	extern const uint8_t thunderball_gw_start[] asm("_binary_Thunder_Ball_gw_start");
+	extern const uint8_t thunderball_gw_end[]   asm("_binary_Thunder_Ball_gw_end");	
 
+	extern const uint8_t spacerescue_gw_start[] asm("_binary_Space_Rescue_gw_start");
+	extern const uint8_t spacerescue_gw_end[]   asm("_binary_Space_Rescue_gw_end");	
+
+	extern const uint8_t shuttlevoyage_gw_start[] asm("_binary_Shuttle_Voyage_gw_start");
+	extern const uint8_t shuttlevoyage_gw_end[]   asm("_binary_Shuttle_Voyage_gw_end");	
+
+	extern const uint8_t thiefingarden_gw_start[] asm("_binary_Thief_in_Garden_gw_start");
+	extern const uint8_t thiefingarden_gw_end[]   asm("_binary_Thief_in_Garden_gw_end");
+		
+	extern const uint8_t diversadventure_gw_start[] asm("_binary_Diver_s_Adventure_gw_start");
+	extern const uint8_t diversadventure_gw_end[]   asm("_binary_Diver_s_Adventure_gw_end");
+
+	extern const uint8_t supergoalkeeper_gw_start[] asm("_binary_Super_Goal_Keeper_gw_start");
+	extern const uint8_t supergoalkeeper_gw_end[]   asm("_binary_Super_Goal_Keeper_gw_end");	
+	
+	extern const uint8_t atakaasteroidov_gw_start[] asm("_binary_Ataka_asteroidov_gw_start");
+	extern const uint8_t atakaasteroidov_gw_end[]   asm("_binary_Ataka_asteroidov_gw_end");	
+	
+	extern const uint8_t autoslalom_gw_start[] asm("_binary_Autoslalom_gw_start");
+	extern const uint8_t autoslalom_gw_end[]   asm("_binary_Autoslalom_gw_end");	
+	
+	extern const uint8_t biathlon_gw_start[] asm("_binary_Biathlon_gw_start");
+	extern const uint8_t biathlon_gw_end[]   asm("_binary_Biathlon_gw_end");	
+	
+	extern const uint8_t circus_gw_start[] asm("_binary_Circus_gw_start");
+	extern const uint8_t circus_gw_end[]   asm("_binary_Circus_gw_end");	
+	
+	extern const uint8_t explorersofspace_gw_start[] asm("_binary_Explorers_of_Space_gw_start");
+	extern const uint8_t explorersofspace_gw_end[]   asm("_binary_Explorers_of_Space_gw_end");	
+	
+	extern const uint8_t fowling_gw_start[] asm("_binary_Fowling_gw_start");
+	extern const uint8_t fowling_gw_end[]   asm("_binary_Fowling_gw_end");	
+
+	extern const uint8_t frogling_gw_start[] asm("_binary_Frogling_gw_start");
+	extern const uint8_t frogling_gw_end[]   asm("_binary_Frogling_gw_end");	
+	
+	extern const uint8_t hockey_gw_start[] asm("_binary_Hockey_gw_start");
+	extern const uint8_t hockey_gw_end[]   asm("_binary_Hockey_gw_end");	
+	
+	extern const uint8_t kotrybolov_gw_start[] asm("_binary_Kot_rybolov__Elektronika__gw_start");
+	extern const uint8_t kotrybolov_gw_end[]   asm("_binary_Kot_rybolov__Elektronika__gw_end");	
+
+	extern const uint8_t monkeygoalkeeper_gw_start[] asm("_binary_Monkey_Goalkeeper_gw_start");
+	extern const uint8_t monkeygoalkeeper_gw_end[]   asm("_binary_Monkey_Goalkeeper_gw_end");	
+	
+	extern const uint8_t morskajaataka_gw_start[] asm("_binary_Morskaja_ataka_gw_start");
+	extern const uint8_t morskajaataka_gw_end[]   asm("_binary_Morskaja_ataka_gw_end");	
+	
+	extern const uint8_t nightburglars_gw_start[] asm("_binary_Night_Burglars_gw_start");
+	extern const uint8_t nightburglars_gw_end[]   asm("_binary_Night_Burglars_gw_end");	
+
+	extern const uint8_t nupogodi_gw_start[] asm("_binary_Nu__pogodi__gw_start");
+	extern const uint8_t nupogodi_gw_end[]   asm("_binary_Nu__pogodi__gw_end");	
+	
+	extern const uint8_t spacebridge_gw_start[] asm("_binary_Space_Bridge_gw_start");
+	extern const uint8_t spacebridge_gw_end[]   asm("_binary_Space_Bridge_gw_end");	
+	
+
+	
+	
 	button_control_type = BUTTON_CONTROL_TYPE_TWO_BUTTON;
 
 	if (index == 0) {
@@ -336,6 +431,122 @@ void game_load(int index)
 		ROM_DATA = (unsigned char *)gnwmariojuggler_gw_start;
 		ROM_DATA_LENGTH = gnwmariojuggler_gw_end - gnwmariojuggler_gw_start;
 	}
+	else if (index == 22) {
+		ROM_DATA = (unsigned char *)spacemission_gw_start;
+		ROM_DATA_LENGTH = spacemission_gw_end - spacemission_gw_start;
+	}	
+	else if (index == 23) {
+		ROM_DATA = (unsigned char *)spider_gw_start;
+		ROM_DATA_LENGTH = spider_gw_end - spider_gw_start;
+	}		
+	else if (index == 24) {
+		ROM_DATA = (unsigned char *)thunderball_gw_start;
+		ROM_DATA_LENGTH = thunderball_gw_end - thunderball_gw_start;
+	}	
+	else if (index == 25) {
+		ROM_DATA = (unsigned char *)spacerescue_gw_start;
+		ROM_DATA_LENGTH = spacerescue_gw_end - spacerescue_gw_start;
+	}
+	else if (index == 26) {
+		ROM_DATA = (unsigned char *)shuttlevoyage_gw_start;
+		ROM_DATA_LENGTH = shuttlevoyage_gw_end - shuttlevoyage_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+		button_control_mode = BUTTON_CONTROL_MODE_FLAGMAN_LION;
+	}	
+	else if (index == 27) {
+		ROM_DATA = (unsigned char *)thiefingarden_gw_start;
+		ROM_DATA_LENGTH = thiefingarden_gw_end - thiefingarden_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+		button_control_mode = BUTTON_CONTROL_MODE_FLAGMAN_LION;
+	}	
+	else if (index == 28) {
+		ROM_DATA = (unsigned char *)diversadventure_gw_start;
+		ROM_DATA_LENGTH = diversadventure_gw_end - diversadventure_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+		button_control_mode = BUTTON_CONTROL_MODE_DIVER;
+		
+	}
+	else if (index == 29) {
+		ROM_DATA = (unsigned char *)supergoalkeeper_gw_start;
+		ROM_DATA_LENGTH = supergoalkeeper_gw_end - supergoalkeeper_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+		button_control_mode = BUTTON_CONTROL_MODE_KEEPER;
+	}	
+	
+	else if (index == 30) {
+		ROM_DATA = (unsigned char *)atakaasteroidov_gw_start;
+		ROM_DATA_LENGTH = atakaasteroidov_gw_end - atakaasteroidov_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}	
+	else if (index == 31) {
+		ROM_DATA = (unsigned char *)autoslalom_gw_start;
+		ROM_DATA_LENGTH = autoslalom_gw_end - autoslalom_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}		
+	else if (index == 32) {
+		ROM_DATA = (unsigned char *)biathlon_gw_start;
+		ROM_DATA_LENGTH = biathlon_gw_end - biathlon_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}		
+	else if (index == 33) {
+		ROM_DATA = (unsigned char *)circus_gw_start;
+		ROM_DATA_LENGTH = circus_gw_end - circus_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}	
+	else if (index == 34) {
+		ROM_DATA = (unsigned char *)explorersofspace_gw_start;
+		ROM_DATA_LENGTH = explorersofspace_gw_end - explorersofspace_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}		
+	else if (index == 35) {
+		ROM_DATA = (unsigned char *)fowling_gw_start;
+		ROM_DATA_LENGTH = fowling_gw_end - fowling_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}		
+	else if (index == 36) {
+		ROM_DATA = (unsigned char *)frogling_gw_start;
+		ROM_DATA_LENGTH = frogling_gw_end - frogling_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}	
+	else if (index == 37) {
+		ROM_DATA = (unsigned char *)hockey_gw_start;
+		ROM_DATA_LENGTH = hockey_gw_end - hockey_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}		
+	else if (index == 38) {
+		ROM_DATA = (unsigned char *)kotrybolov_gw_start;
+		ROM_DATA_LENGTH = kotrybolov_gw_end - kotrybolov_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}		
+	else if (index == 39) {
+		ROM_DATA = (unsigned char *)monkeygoalkeeper_gw_start;
+		ROM_DATA_LENGTH = monkeygoalkeeper_gw_end - monkeygoalkeeper_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}	
+	else if (index == 40) {
+		ROM_DATA = (unsigned char *)morskajaataka_gw_start;
+		ROM_DATA_LENGTH = morskajaataka_gw_end - morskajaataka_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}		
+	else if (index == 41) {
+		ROM_DATA = (unsigned char *)nightburglars_gw_start;
+		ROM_DATA_LENGTH = nightburglars_gw_end - nightburglars_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}	
+	else if (index == 42) {
+		ROM_DATA = (unsigned char *)nupogodi_gw_start;
+		ROM_DATA_LENGTH = nupogodi_gw_end - nupogodi_gw_start;
+		button_control_type = BUTTON_CONTROL_TYPE_FOUR_BUTTON;
+	}
+	else if (index == 43) {
+		ROM_DATA = (unsigned char *)spacebridge_gw_start;
+		ROM_DATA_LENGTH = spacebridge_gw_end - spacebridge_gw_start;
+	}		
+	
+	
+		
+	
+	
 #elif defined(MODEL_MULTI_SCREEN_2_BUTTON)	
 	extern const uint8_t gnwoilpanic_gw_start[] asm("_binary_Game___Watch_Oil_Panic_gw_start");
 	extern const uint8_t gnwoilpanic_gw_end[]   asm("_binary_Game___Watch_Oil_Panic_gw_end");
