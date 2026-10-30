@@ -1,5 +1,25 @@
 # Esp32-Game-and-Watch
 
+This is my modification of this design, for now intended exclusively for the single-screen, 4-button version. 
+Most of the changes are hardware-related, with few changes to the software.
+
+Hardware related changes:
+- ESP32 module is ESP32-S3-Zero-N8R8-M, 8MB Flash and 8MB PSRAM, SKU: 33549
+- Battery is LiPo 3.7V, 1800mAh, 602095
+- LCD Screen is Surenoo 2.8", 240*320, 18P/0.5 header, SHP0280B-240320 (IPS), 18P05B-NTP-IPS
+- 4 buttons are EVQP0N02B microswitches
+- one PCB for all modules
+- new 3D files (soon)
+
+Software related changes:
+- brightness control
+- pause game (thanks to: https://github.com/lonesoulsurfer/Thingtendo-Game-and-Watch-Clone)
+- resume game (thanks to: https://github.com/lonesoulsurfer/Thingtendo-Game-and-Watch-Clone)
+
+<br><br>
+
+
+
 Esp32‑Game‑and‑Watch is a project for recreating classic Game & Watch handhelds using an ESP32 microcontroller, 3D‑printed cases, and simple electronics. 
 
 It currently supports most single screen and multi screen Game & Watch titles, making it easy to recreate a wide range of the original handhelds.
