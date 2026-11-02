@@ -410,10 +410,10 @@ uint8_t button_get_menu_buttons(void)
 			if (gpio_get_level(BUTTON_TIME) == 0) {
 				
 				if (gpio_get_level(BUTTON_RIGHT) == 0) { 
-					brightness_set(true); // volume up
+					brightness_set(true); // brightness up
 				}
 				else if (gpio_get_level(BUTTON_LEFT) == 0) {
-					brightness_set(false); // volume down
+					brightness_set(false); // brightness down
 				}
 				if (gpio_get_level(BUTTON_RIGHT_2) == 0) { 
 					volume_set(true); // volume up
@@ -518,10 +518,10 @@ uint8_t button_get_menu_buttons(void)
 			if (gpio_get_level(BUTTON_TIME) == 0) {
 				
 				if (gpio_get_level(BUTTON_RIGHT) == 0) { 
-					brightness_set(true); // volume up
+					brightness_set(true); // brightness up
 				}
 				else if (gpio_get_level(BUTTON_LEFT) == 0) {
-					brightness_set(false); // volume down
+					brightness_set(false); // brightness down
 				}
 				if (gpio_get_level(BUTTON_RIGHT_2) == 0) { 
 					volume_set(true); // volume up
@@ -544,8 +544,8 @@ uint8_t button_get_menu_buttons(void)
 				hw_buttons |= GW_BUTTON_B + GW_BUTTON_GAME;
 			}
 			else if (gpio_get_level(BUTTON_ACL) == 0) {
-				//gw_system_reset();
-				esp_restart();
+				gw_system_reset();
+				//esp_restart();
 			}
 			
 			else {
